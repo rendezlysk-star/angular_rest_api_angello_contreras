@@ -1,0 +1,31 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.header-title {
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 8px;
+
+  a.active-link {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid #ffffff;
+  }
+}
+
+.content-container {
+  padding: 24px 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+}

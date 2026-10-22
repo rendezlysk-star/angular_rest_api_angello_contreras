@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+
+// Definición de paletas Material 3
+$light-theme: (
+  color: (
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+    theme-type: light,
+  ),
+  typography: Roboto,
+  density: 0,
+);
+
+$dark-theme: (
+  color: (
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+    theme-type: dark,
+  ),
+  typography: Roboto,
+  density: 0,
+);
+
+// Tema claro por defecto en toda la aplicación
+html {
+  @include mat.theme($light-theme);
+}
+
+// Sobrescribir variables de Material cuando el body tenga la clase .dark-theme
+body.dark-theme {
+  @include mat.theme-overrides($dark-theme);
+  color-scheme: dark;
+}
+
+// Estilos globales y reset
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color-scheme: light;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
