@@ -2,7 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { DigimonRestService, DigimonWithId } from '../../services/digimon-rest';
+import { DigimonRestService } from '../../services/digimon-rest';
 import { CharacterCardComponent } from '../../components/character-card/character-card';
 import { BaseCharacter } from '../../interfaces/base-character';
 
@@ -22,8 +22,7 @@ export class DigimonListComponent implements OnInit {
   private digimonService = inject(DigimonRestService);
   private snackBar = inject(MatSnackBar);
 
-  private allCharacters: DigimonWithId[] = [];
-  paginatedCharacters = signal<BaseCharacter[]>([]);
+  characters = signal<BaseCharacter[]>([]);
   isLoading = signal<boolean>(true);
 
   totalElements = signal<number>(0);
@@ -36,11 +35,15 @@ export class DigimonListComponent implements OnInit {
 
   loadDigimons(): void {
     this.isLoading.set(true);
-    this.digimonService.getAllDigimons().subscribe({
-      next: (data) => {
-        this.allCharacters = data;
-        this.totalElements.set(data.length);
-        this.updatePageData();
+    this.digimonService.getDigimons(this.pageIndex(), this.pageSize()).subscribe({
+      next: (response) => {
+        const mapped: BaseCharacter[] = response.content.map((d) => ({
+          id: d.id, // ID numérico real de la API
+          name: d.name,
+          image: d.image,
+        }));
+        this.characters.set(mapped);
+        this.totalElements.set(response.pageable.totalElements);
         this.isLoading.set(false);
       },
       error: () => {
@@ -55,20 +58,6 @@ export class DigimonListComponent implements OnInit {
   onPageChange(event: PageEvent): void {
     this.pageIndex.set(event.pageIndex);
     this.pageSize.set(event.pageSize);
-    this.updatePageData();
-  }
-
-  private updatePageData(): void {
-    const start = this.pageIndex() * this.pageSize();
-    const end = start + this.pageSize();
-    const slice = this.allCharacters.slice(start, end);
-
-    this.paginatedCharacters.set(
-      slice.map((d) => ({
-        id: d.name, // Usamos el nombre como identificador de ruta
-        name: d.name,
-        image: d.img,
-      })),
-    );
+    this.loadDigimons();
   }
 }

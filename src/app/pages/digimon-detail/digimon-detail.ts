@@ -6,7 +6,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { DigimonRestService, DigimonItem } from '../../services/digimon-rest';
+import { DigimonRestService, DigimonDetail } from '../../services/digimon-rest';
 
 @Component({
   selector: 'app-digimon-detail',
@@ -28,13 +28,13 @@ export class DigimonDetailComponent implements OnInit {
   private digimonService = inject(DigimonRestService);
   private snackBar = inject(MatSnackBar);
 
-  digimon = signal<DigimonItem | null>(null);
+  digimon = signal<DigimonDetail | null>(null);
   isLoading = signal<boolean>(true);
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.digimonService.getDigimonByName(id).subscribe({
+      this.digimonService.getDigimonById(id).subscribe({
         next: (data) => {
           this.digimon.set(data);
           this.isLoading.set(false);
@@ -47,5 +47,12 @@ export class DigimonDetailComponent implements OnInit {
         },
       });
     }
+  }
+
+  getDescription(): string {
+    const descriptions = this.digimon()?.descriptions;
+    if (!descriptions || descriptions.length === 0) return 'Sin descripción disponible.';
+    const en = descriptions.find((d) => d.language === 'en_us');
+    return en ? en.description : descriptions[0].description;
   }
 }

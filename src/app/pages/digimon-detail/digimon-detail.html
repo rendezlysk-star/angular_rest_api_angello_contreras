@@ -8,22 +8,85 @@
       <mat-spinner diameter="50"></mat-spinner>
     </div>
   } @else if (digimon()) {
-    <mat-card class="detail-card universe-digimon-detail">
+    <mat-card class="detail-card">
       <div class="detail-grid">
         <div class="image-section">
-          <img [src]="digimon()?.img" [alt]="digimon()?.name" />
+          <img [src]="digimon()?.images?.[0]?.href" [alt]="digimon()?.name" />
         </div>
 
         <div class="info-section">
-          <span class="id-tag">Criatura Digital</span>
+          <span class="id-tag">Digimon #{{ digimon()?.id }}</span>
           <h1>{{ digimon()?.name }}</h1>
 
-          <div class="meta-group">
-            <strong>Nivel de Evolución:</strong>
-            <mat-chip-set>
-              <mat-chip highlighted color="accent">{{ digimon()?.level }}</mat-chip>
-            </mat-chip-set>
+          <p class="description">{{ getDescription() }}</p>
+
+          <div class="badges-row">
+            @if (digimon()?.levels?.length) {
+              <div class="meta-item">
+                <span class="label">Nivel:</span>
+                <mat-chip-set>
+                  @for (lvl of digimon()?.levels; track lvl.id) {
+                    <mat-chip>{{ lvl.level }}</mat-chip>
+                  }
+                </mat-chip-set>
+              </div>
+            }
+
+            @if (digimon()?.attributes?.length) {
+              <div class="meta-item">
+                <span class="label">Atributo:</span>
+                <mat-chip-set>
+                  @for (attr of digimon()?.attributes; track attr.id) {
+                    <mat-chip>{{ attr.attribute }}</mat-chip>
+                  }
+                </mat-chip-set>
+              </div>
+            }
+
+            @if (digimon()?.types?.length) {
+              <div class="meta-item">
+                <span class="label">Tipo:</span>
+                <mat-chip-set>
+                  @for (t of digimon()?.types; track t.id) {
+                    <mat-chip>{{ t.type }}</mat-chip>
+                  }
+                </mat-chip-set>
+              </div>
+            }
           </div>
+
+          @if (digimon()?.fields?.length) {
+            <div class="section-block">
+              <strong>Campos Elementales:</strong>
+              <div class="fields-list">
+                @for (field of digimon()?.fields; track field.id) {
+                  <div class="field-badge" [title]="field.field">
+                    <img [src]="field.image" [alt]="field.field" />
+                    <span>{{ field.field }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
+          @if (digimon()?.skills?.length) {
+            <div class="section-block">
+              <strong>Habilidades y Ataques:</strong>
+              <div class="skills-grid">
+                @for (skill of digimon()?.skills; track skill.id) {
+                  <div class="skill-item">
+                    <div class="skill-name">{{ skill.skill }}</div>
+                    @if (skill.translation) {
+                      <div class="skill-trans">({{ skill.translation }})</div>
+                    }
+                    @if (skill.description) {
+                      <div class="skill-desc">{{ skill.description }}</div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          }
         </div>
       </div>
     </mat-card>

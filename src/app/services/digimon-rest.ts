@@ -1,15 +1,34 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
-export interface DigimonItem {
+export interface DigimonListItem {
+  id: number;
   name: string;
-  img: string;
-  level: string;
+  href: string;
+  image: string;
 }
 
-export interface DigimonWithId extends DigimonItem {
+export interface DigimonApiResponse {
+  content: DigimonListItem[];
+  pageable: {
+    currentPage: number;
+    elementsOnPage: number;
+    totalElements: number;
+    totalPages: number;
+  };
+}
+
+export interface DigimonDetail {
   id: number;
+  name: string;
+  images: Array<{ href: string; transparent?: boolean }>;
+  levels?: Array<{ id: number; level: string }>;
+  types?: Array<{ id: number; type: string }>;
+  attributes?: Array<{ id: number; attribute: string }>;
+  fields?: Array<{ id: number; field: string; image: string }>;
+  descriptions?: Array<{ origin: string; language: string; description: string }>;
+  skills?: Array<{ id: number; skill: string; translation?: string; description: string }>;
 }
 
 @Injectable({
@@ -17,23 +36,14 @@ export interface DigimonWithId extends DigimonItem {
 })
 export class DigimonRestService {
   private http = inject(HttpClient);
-  private baseUrl = 'https://digimon-api.vercel.app/api/digimon';
+  // Dominio oficial según la documentación DAPI
+  private baseUrl = 'https://digi-api.com/api/v1/digimon';
 
-  // Obtenemos todos y les asignamos un ID correlativo estable basado en su posición
-  getAllDigimons(): Observable<DigimonWithId[]> {
-    return this.http.get<DigimonItem[]>(this.baseUrl).pipe(
-      map((items) =>
-        items.map((item, index) => ({
-          ...item,
-          id: index + 1,
-        })),
-      ),
-    );
+  getDigimons(page: number = 0, pageSize: number = 20): Observable<DigimonApiResponse> {
+    return this.http.get<DigimonApiResponse>(`${this.baseUrl}?page=${page}&pageSize=${pageSize}`);
   }
 
-  getDigimonByName(name: string): Observable<DigimonItem | null> {
-    return this.http
-      .get<DigimonItem[]>(`${this.baseUrl}/name/${name}`)
-      .pipe(map((results) => (results.length > 0 ? results[0] : null)));
+  getDigimonById(id: string | number): Observable<DigimonDetail> {
+    return this.http.get<DigimonDetail>(`${this.baseUrl}/${id}`);
   }
 }
