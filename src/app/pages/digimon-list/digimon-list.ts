@@ -38,7 +38,7 @@ export class DigimonListComponent implements OnInit {
     this.digimonService.getDigimons(this.pageIndex(), this.pageSize()).subscribe({
       next: (response) => {
         const mapped: BaseCharacter[] = response.content.map((d) => ({
-          id: d.id, // ID numérico real de la API
+          id: d.id,
           name: d.name,
           image: d.image,
         }));

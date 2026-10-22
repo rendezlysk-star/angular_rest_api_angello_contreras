@@ -26,7 +26,7 @@ export class DbzListComponent implements OnInit {
   isLoading = signal<boolean>(true);
 
   totalElements = signal<number>(0);
-  pageSize = signal<number>(12);
+  pageSize = signal<number>(10);
   pageIndex = signal<number>(0);
 
   ngOnInit(): void {
@@ -35,7 +35,6 @@ export class DbzListComponent implements OnInit {
 
   loadDbzCharacters(): void {
     this.isLoading.set(true);
-    // MatPaginator cuenta desde 0, la API de DBZ espera páginas desde 1
     const apiPage = this.pageIndex() + 1;
 
     this.dbzService.getCharacters(apiPage, this.pageSize()).subscribe({

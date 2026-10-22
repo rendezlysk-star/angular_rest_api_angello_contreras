@@ -22,28 +22,70 @@ $dark-theme: (
   density: 0,
 );
 
-// Tema claro por defecto en toda la aplicación
+// 1. Tema claro por defecto en toda la aplicación
 html {
   @include mat.theme($light-theme);
+  color-scheme: light;
 }
 
-// Sobrescribir variables de Material cuando el body tenga la clase .dark-theme
-body.dark-theme {
-  @include mat.theme-overrides($dark-theme);
+// 2. Tema oscuro nativo al alternar la clase .dark-theme
+html.dark-theme {
+  @include mat.theme($dark-theme);
   color-scheme: dark;
 }
 
-// Estilos globales y reset
+// 3. Estilos globales y reset usando tokens nativos de Material 3
 html, body {
   height: 100%;
 }
 
 body {
   margin: 0;
-  color-scheme: light;
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
   font-family: Roboto, "Helvetica Neue", sans-serif;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+// 4. Adaptación limpia para elementos personalizados y bordes redondeados
+// Usamos los tokens del sistema para que cambien solos sin tocar CSS a mano
+
+// Botones y bordes redondeados
+.mat-mdc-unelevated-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-button {
+  border-radius: 24px !important;
+}
+
+.mat-mdc-card {
+  border-radius: 16px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.25s ease !important;
+}
+
+// Cajas de estadísticas, citas y descripciones conectadas a los tokens nativos de superficie
+.stat-card, .stat-box {
+  background-color: var(--mat-sys-surface-container) !important;
+  border: 1px solid var(--mat-sys-outline-variant) !important;
+  border-radius: 12px;
+
+  .stat-label, .label {
+    color: var(--mat-sys-on-surface-variant);
+  }
+  .stat-val, .value {
+    color: var(--mat-sys-on-surface);
+  }
+}
+
+.description {
+  background-color: var(--mat-sys-surface-container-low);
+  color: var(--mat-sys-on-surface);
+  border-radius: 10px;
+}
+
+.character-quote {
+  background-color: var(--mat-sys-surface-container-low);
+  color: var(--mat-sys-on-surface-variant);
+  border-radius: 8px;
 }

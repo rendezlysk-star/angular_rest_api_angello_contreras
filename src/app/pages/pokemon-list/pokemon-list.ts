@@ -40,7 +40,6 @@ export class PokemonListComponent implements OnInit {
     this.pokemonService.getPokemonList(offset, this.pageSize()).subscribe({
       next: (response) => {
         const mapped: BaseCharacter[] = response.results.map((item) => {
-          // Extraemos el ID numérico del formato de URL: https://pokeapi.co/api/v2/pokemon/25/
           const parts = item.url.split('/').filter(Boolean);
           const id = parts[parts.length - 1];
           const artworkUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;

@@ -8,10 +8,6 @@ export class ThemeService {
 
   toggleTheme(): void {
     this.isDarkMode.update((dark) => !dark);
-    if (this.isDarkMode()) {
-      document.body.classList.add('dark-theme');
-    } else {
-      document.body.classList.remove('dark-theme');
-    }
+    document.documentElement.classList.toggle('dark-theme', this.isDarkMode());
   }
 }

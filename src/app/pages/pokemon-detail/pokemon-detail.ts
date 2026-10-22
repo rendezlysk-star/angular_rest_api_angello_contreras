@@ -62,7 +62,6 @@ export class PokemonDetailComponent implements OnInit {
     );
   }
 
-  // PokéAPI entrega altura en decímetros y peso en hectogramos
   getHeightInMeters(): string {
     const h = this.pokemon()?.height;
     return h ? `${(h / 10).toFixed(1)} m` : 'N/A';

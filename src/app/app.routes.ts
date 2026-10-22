@@ -6,6 +6,8 @@ import { DbzListComponent } from './pages/dbz-list/dbz-list';
 import { DbzDetailComponent } from './pages/dbz-detail/dbz-detail';
 import { PokemonListComponent } from './pages/pokemon-list/pokemon-list';
 import { PokemonDetailComponent } from './pages/pokemon-detail/pokemon-detail';
+import { DemonSlayerListComponent } from './pages/demon-slayer-list/demon-slayer-list';
+import { DemonSlayerDetailComponent } from './pages/demon-slayer-detail/demon-slayer-detail';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -15,5 +17,7 @@ export const routes: Routes = [
   { path: 'dbz/:id', component: DbzDetailComponent },
   { path: 'pokemon', component: PokemonListComponent },
   { path: 'pokemon/:id', component: PokemonDetailComponent },
+  { path: 'demon-slayer', component: DemonSlayerListComponent },
+  { path: 'demon-slayer/:id', component: DemonSlayerDetailComponent },
   { path: '**', redirectTo: '' },
 ];

@@ -36,7 +36,6 @@ export interface DigimonDetail {
 })
 export class DigimonRestService {
   private http = inject(HttpClient);
-  // Dominio oficial según la documentación DAPI
   private baseUrl = 'https://digi-api.com/api/v1/digimon';
 
   getDigimons(page: number = 0, pageSize: number = 20): Observable<DigimonApiResponse> {

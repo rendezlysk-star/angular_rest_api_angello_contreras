@@ -1,0 +1,35 @@
+.list-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .ds-header {
+    border-left: 5px solid #00897b;
+    padding-left: 12px;
+    h2 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    p {
+      margin: 4px 0 0 0;
+      color: var(--mat-sys-outline, #757575);
+    }
+  }
+
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+  }
+
+  .characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1.25rem;
+  }
+
+  mat-paginator {
+    background: transparent;
+    border-radius: 8px;
+  }
+}

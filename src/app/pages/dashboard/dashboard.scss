@@ -36,11 +36,16 @@
 
   .card-media-wrapper {
     height: 180px;
-    overflow: hidden;
+    padding: 16px;
+    background: var(--mat-sys-surface-container-low, rgba(0, 0, 0, 0.02));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform 0.3s ease;
     }
   }
@@ -62,7 +67,6 @@
     }
   }
 
-  /* Colores de acento híbridos */
   &.universe-digimon {
     border-top-color: #0288d1;
     a[mat-flat-button] {
