@@ -1,0 +1,28 @@
+<section class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Explorador de Universos</h1>
+    <p>Selecciona un universo para consultar sus personajes y detalles oficiales.</p>
+  </div>
+
+  <div class="cards-grid">
+    @for (universe of universes; track universe.id) {
+      <mat-card class="universe-card {{ universe.themeClass }}" [routerLink]="universe.route">
+        <div class="card-media-wrapper">
+          <img mat-card-image [src]="universe.image" [alt]="universe.title" loading="lazy" />
+        </div>
+        <mat-card-header>
+          <mat-card-title>{{ universe.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ universe.description }}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <a mat-flat-button [routerLink]="universe.route">
+            Explorar
+            <mat-icon>arrow_forward</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+</section>

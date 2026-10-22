@@ -1,0 +1,97 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .dashboard-header {
+    text-align: center;
+    h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    p {
+      margin: 0;
+      color: var(--mat-sys-outline, #757575);
+    }
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.universe-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  border-top: 4px solid transparent;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-media-wrapper {
+    height: 180px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &:hover .card-media-wrapper img {
+    transform: scale(1.05);
+  }
+
+  mat-card-header {
+    margin-top: 0.75rem;
+  }
+
+  mat-card-content {
+    flex-grow: 1;
+    margin-top: 0.5rem;
+    p {
+      color: inherit;
+      line-height: 1.4;
+    }
+  }
+
+  /* Colores de acento híbridos */
+  &.universe-digimon {
+    border-top-color: #0288d1;
+    a[mat-flat-button] {
+      background-color: #0288d1;
+      color: #ffffff;
+    }
+  }
+
+  &.universe-dbz {
+    border-top-color: #f57c00;
+    a[mat-flat-button] {
+      background-color: #f57c00;
+      color: #ffffff;
+    }
+  }
+
+  &.universe-pokemon {
+    border-top-color: #e53935;
+    a[mat-flat-button] {
+      background-color: #e53935;
+      color: #ffffff;
+    }
+  }
+
+  &.universe-demon-slayer {
+    border-top-color: #00897b;
+    a[mat-flat-button] {
+      background-color: #00897b;
+      color: #ffffff;
+    }
+  }
+}
