@@ -1,0 +1,33 @@
+<section class="list-page-container">
+  <header class="page-header digimon-header">
+    <h2>Universo Digimon</h2>
+    <p>Explora las criaturas digitales y sus datos de combate.</p>
+  </header>
+
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  } @else {
+    <div class="characters-grid">
+      @for (char of paginatedCharacters(); track char.id) {
+        <app-character-card
+          [character]="char"
+          [detailRoutePrefix]="'/digimon'"
+          themeClass="universe-digimon"
+        >
+        </app-character-card>
+      }
+    </div>
+
+    <mat-paginator
+      [length]="totalElements()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="[10, 20, 50]"
+      [pageIndex]="pageIndex()"
+      (page)="onPageChange($event)"
+      aria-label="Seleccionar página de Digimon"
+    >
+    </mat-paginator>
+  }
+</section>

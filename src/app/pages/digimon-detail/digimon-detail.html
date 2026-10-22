@@ -1,0 +1,31 @@
+<div class="detail-container">
+  <a mat-button routerLink="/digimon" class="back-btn">
+    <mat-icon>arrow_back</mat-icon> Volver al Listado
+  </a>
+
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  } @else if (digimon()) {
+    <mat-card class="detail-card universe-digimon-detail">
+      <div class="detail-grid">
+        <div class="image-section">
+          <img [src]="digimon()?.img" [alt]="digimon()?.name" />
+        </div>
+
+        <div class="info-section">
+          <span class="id-tag">Criatura Digital</span>
+          <h1>{{ digimon()?.name }}</h1>
+
+          <div class="meta-group">
+            <strong>Nivel de Evolución:</strong>
+            <mat-chip-set>
+              <mat-chip highlighted color="accent">{{ digimon()?.level }}</mat-chip>
+            </mat-chip-set>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  }
+</div>

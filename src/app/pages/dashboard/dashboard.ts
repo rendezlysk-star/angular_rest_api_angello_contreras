@@ -27,7 +27,7 @@ export class DashboardComponent {
       title: 'Digimon',
       description:
         'Monstruos digitales nacidos en la red. Explora sus líneas evolutivas y atributos de combate.',
-      image: 'https://images.alphacoders.com/264/264906.jpg',
+      image: 'https://i.redd.it/lti6z5yqm8h31.png',
       route: '/digimon',
       themeClass: 'universe-digimon',
     },
@@ -36,7 +36,8 @@ export class DashboardComponent {
       title: 'Dragon Ball Z',
       description:
         'Guerreros saiyajin, artes marciales y batallas cósmicas. Consulta sus niveles de poder y transformaciones.',
-      image: 'https://images.alphacoders.com/133/1330953.png',
+      image:
+        'https://upload.wikimedia.org/wikipedia/commons/0/0b/Dragon_Ball_Z_logo.svg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original',
       route: '/dbz',
       themeClass: 'universe-dbz',
     },
@@ -45,7 +46,8 @@ export class DashboardComponent {
       title: 'Pokémon',
       description:
         'Criaturas de bolsillo con habilidades elementales. Explora estadísticas, tipos y movimientos.',
-      image: 'https://images.alphacoders.com/134/1344697.png',
+      image:
+        'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/330px-International_Pok%C3%A9mon_logo.svg.png?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=thumbnail',
       route: '/pokemon',
       themeClass: 'universe-pokemon',
     },
@@ -54,7 +56,7 @@ export class DashboardComponent {
       title: 'Demon Slayer',
       description:
         'Cazadores de demonios dominando respiraciones elementales y las lunas demoníacas del clan Muzan.',
-      image: 'https://images.alphacoders.com/102/1026639.jpg',
+      image: 'https://i.pinimg.com/1200x/ea/2e/bd/ea2ebd4914bd2acefa3a695a2fdd9627.jpg',
       route: '/demon-slayer',
       themeClass: 'universe-demon-slayer',
     },
