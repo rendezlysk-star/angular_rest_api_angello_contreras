@@ -1,0 +1,208 @@
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .back-btn {
+    align-self: flex-start;
+  }
+
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+  }
+
+  .detail-card {
+    padding: 24px;
+    border-radius: 12px;
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+
+      @media (max-width: 820px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .image-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: 8px;
+      padding: 16px;
+      height: fit-content;
+
+      img {
+        max-width: 100%;
+        max-height: 480px;
+        object-fit: contain;
+      }
+    }
+
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .id-tag {
+        font-weight: 700;
+        color: #f57c00;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 2.2rem;
+      }
+
+      .description {
+        line-height: 1.6;
+        background: rgba(0, 0, 0, 0.02);
+        padding: 12px;
+        border-radius: 6px;
+        border-left: 3px solid #f57c00;
+        margin: 0;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 12px;
+
+        .stat-card {
+          background: rgba(0, 0, 0, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.07);
+          border-radius: 8px;
+          padding: 8px 12px;
+          display: flex;
+          flex-direction: column;
+
+          .stat-label {
+            font-size: 0.75rem;
+            color: var(--mat-sys-outline, #777);
+          }
+          .stat-val {
+            font-weight: 600;
+            font-size: 0.95rem;
+
+            &.ki-highlight {
+              color: #f57c00;
+            }
+          }
+        }
+      }
+
+      .meta-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .planet-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .planet-card {
+          display: flex;
+          gap: 16px;
+          background: rgba(0, 0, 0, 0.03);
+          border-radius: 8px;
+          padding: 12px;
+          align-items: center;
+
+          img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          .planet-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            h4 {
+              margin: 0;
+              font-size: 1.1rem;
+            }
+
+            .planet-status {
+              font-size: 0.8rem;
+              font-weight: 600;
+              color: #2e7d32;
+
+              &.destroyed {
+                color: #d32f2f;
+              }
+            }
+
+            p {
+              margin: 4px 0 0 0;
+              font-size: 0.85rem;
+              color: var(--mat-sys-outline, #777);
+            }
+          }
+        }
+      }
+
+      .transformations-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .trans-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+          gap: 12px;
+
+          .trans-card {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: rgba(245, 124, 0, 0.06);
+            border: 1px solid rgba(245, 124, 0, 0.2);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+
+            &:hover {
+              transform: translateY(-2px);
+              background: rgba(245, 124, 0, 0.12);
+            }
+
+            img {
+              width: 44px;
+              height: 44px;
+              object-fit: contain;
+            }
+
+            .trans-info {
+              display: flex;
+              flex-direction: column;
+              overflow: hidden;
+
+              .trans-name {
+                font-size: 0.85rem;
+                font-weight: 600;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+
+              .trans-ki {
+                font-size: 0.75rem;
+                color: #f57c00;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

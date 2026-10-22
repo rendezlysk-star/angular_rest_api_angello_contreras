@@ -1,0 +1,33 @@
+<section class="list-page-container">
+  <header class="page-header dbz-header">
+    <h2>Universo Dragon Ball Z</h2>
+    <p>Explora los guerreros de la Tierra, saiyajins, dioses y villanos del cosmos.</p>
+  </header>
+
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  } @else {
+    <div class="characters-grid">
+      @for (char of characters(); track char.id) {
+        <app-character-card
+          [character]="char"
+          [detailRoutePrefix]="'/dbz'"
+          themeClass="universe-dbz"
+        >
+        </app-character-card>
+      }
+    </div>
+
+    <mat-paginator
+      [length]="totalElements()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="[6, 12, 24]"
+      [pageIndex]="pageIndex()"
+      (page)="onPageChange($event)"
+      aria-label="Seleccionar página de Dragon Ball Z"
+    >
+    </mat-paginator>
+  }
+</section>

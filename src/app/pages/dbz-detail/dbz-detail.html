@@ -1,0 +1,103 @@
+<div class="detail-container">
+  <a mat-button routerLink="/dbz" class="back-btn">
+    <mat-icon>arrow_back</mat-icon> Volver al Listado
+  </a>
+
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  } @else if (character()) {
+    <mat-card class="detail-card">
+      <div class="detail-grid">
+        <div class="image-section">
+          <img [src]="character()?.image" [alt]="character()?.name" />
+        </div>
+
+        <div class="info-section">
+          <span class="id-tag">Guerrero #{{ character()?.id }}</span>
+          <h1>{{ character()?.name }}</h1>
+
+          @if (character()?.description) {
+            <p class="description">{{ character()?.description }}</p>
+          }
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-label">Raza</span>
+              <span class="stat-val">{{ character()?.race || 'Desconocida' }}</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Género</span>
+              <span class="stat-val">{{ character()?.gender || 'No especificado' }}</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Ki Base</span>
+              <span class="stat-val ki-highlight">{{ character()?.ki || '0' }}</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Ki Máximo</span>
+              <span class="stat-val ki-highlight">{{ character()?.maxKi || 'N/A' }}</span>
+            </div>
+          </div>
+
+          @if (character()?.affiliation) {
+            <div class="meta-row">
+              <strong>Afiliación:</strong>
+              <mat-chip-set>
+                <mat-chip>{{ character()?.affiliation }}</mat-chip>
+              </mat-chip-set>
+            </div>
+          }
+
+          @if (character()?.originPlanet) {
+            <div class="planet-block">
+              <strong>Planeta de Origen:</strong>
+              <div class="planet-card">
+                @if (character()?.originPlanet?.image) {
+                  <img
+                    [src]="character()?.originPlanet?.image"
+                    [alt]="character()?.originPlanet?.name"
+                  />
+                }
+                <div class="planet-details">
+                  <h4>{{ character()?.originPlanet?.name }}</h4>
+                  <span
+                    class="planet-status"
+                    [class.destroyed]="character()?.originPlanet?.isDestroyed"
+                  >
+                    {{ character()?.originPlanet?.isDestroyed ? 'Destruido' : 'Activo / Habitado' }}
+                  </span>
+                  @if (character()?.originPlanet?.description) {
+                    <p>{{ character()?.originPlanet?.description }}</p>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+
+          @if (character()?.transformations?.length) {
+            <div class="transformations-block">
+              <strong>Transformaciones ({{ character()?.transformations?.length }}):</strong>
+              <div class="trans-grid">
+                @for (trans of character()?.transformations; track trans.id) {
+                  <div
+                    class="trans-card"
+                    (click)="openTransformationModal(trans.image, trans.name)"
+                    title="Click para ampliar"
+                  >
+                    <img [src]="trans.image" [alt]="trans.name" />
+                    <div class="trans-info">
+                      <span class="trans-name">{{ trans.name }}</span>
+                      <span class="trans-ki">Ki: {{ trans.ki }}</span>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </mat-card>
+  }
+</div>
