@@ -56,7 +56,8 @@ export class DashboardComponent {
       title: 'Demon Slayer',
       description:
         'Cazadores de demonios dominando respiraciones elementales y las lunas demoníacas del clan Muzan.',
-      image: 'https://i.pinimg.com/1200x/ea/2e/bd/ea2ebd4914bd2acefa3a695a2fdd9627.jpg',
+      image:
+        'https://images.seeklogo.com/logo-png/40/1/kimetsu-no-yaiba-logo-png_seeklogo-408229.png',
       route: '/demon-slayer',
       themeClass: 'universe-demon-slayer',
     },

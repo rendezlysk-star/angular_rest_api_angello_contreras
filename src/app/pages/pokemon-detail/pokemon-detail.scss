@@ -1,0 +1,152 @@
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .back-btn {
+    align-self: flex-start;
+  }
+
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+  }
+
+  .detail-card {
+    padding: 24px;
+    border-radius: 12px;
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+
+      @media (max-width: 800px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .image-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: 8px;
+      padding: 16px;
+      height: fit-content;
+
+      img {
+        max-width: 100%;
+        max-height: 400px;
+        object-fit: contain;
+      }
+    }
+
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .id-tag {
+        font-weight: 700;
+        color: #e53935;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 2.2rem;
+        &.capitalize {
+          text-transform: capitalize;
+        }
+      }
+
+      .types-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .type-chip {
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: 0.75rem;
+        }
+      }
+
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 12px;
+
+        .stat-box {
+          background: rgba(0, 0, 0, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.07);
+          border-radius: 8px;
+          padding: 8px 12px;
+          display: flex;
+          flex-direction: column;
+
+          .label {
+            font-size: 0.75rem;
+            color: var(--mat-sys-outline, #777);
+          }
+          .value {
+            font-weight: 600;
+            font-size: 0.95rem;
+          }
+        }
+      }
+
+      .abilities-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .hidden-tag {
+          font-size: 0.75rem;
+          opacity: 0.7;
+          margin-left: 4px;
+        }
+      }
+
+      .base-stats-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .stats-bars {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .stat-labels {
+              display: flex;
+              justify-content: space-between;
+              font-size: 0.85rem;
+
+              .stat-name {
+                text-transform: capitalize;
+              }
+
+              .stat-num {
+                font-weight: 700;
+                color: #e53935;
+              }
+            }
+
+            mat-progress-bar {
+              height: 6px;
+              border-radius: 3px;
+              --mdc-linear-progress-active-indicator-color: #e53935;
+            }
+          }
+        }
+      }
+    }
+  }
+}

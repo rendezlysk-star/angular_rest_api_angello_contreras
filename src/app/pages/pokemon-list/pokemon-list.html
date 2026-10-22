@@ -1,0 +1,32 @@
+<section class="list-page-container">
+  <header class="page-header pokemon-header">
+    <h2>Pokémon</h2>
+  </header>
+
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  } @else {
+    <div class="characters-grid">
+      @for (char of characters(); track char.id) {
+        <app-character-card
+          [character]="char"
+          [detailRoutePrefix]="'/pokemon'"
+          themeClass="universe-pokemon"
+        >
+        </app-character-card>
+      }
+    </div>
+
+    <mat-paginator
+      [length]="totalElements()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="[10, 20, 50]"
+      [pageIndex]="pageIndex()"
+      (page)="onPageChange($event)"
+      aria-label="Seleccionar página de Pokémon"
+    >
+    </mat-paginator>
+  }
+</section>

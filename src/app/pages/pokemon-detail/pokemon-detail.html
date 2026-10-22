@@ -1,0 +1,80 @@
+<div class="detail-container">
+  <a mat-button routerLink="/pokemon" class="back-btn">
+    <mat-icon>arrow_back</mat-icon> Volver al Listado
+  </a>
+
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  } @else if (pokemon()) {
+    <mat-card class="detail-card">
+      <div class="detail-grid">
+        <div class="image-section">
+          <img [src]="getImageUrl()" [alt]="pokemon()?.name" />
+        </div>
+
+        <div class="info-section">
+          <span class="id-tag">Pokédex #{{ pokemon()?.id }}</span>
+          <h1 class="capitalize">{{ pokemon()?.name }}</h1>
+
+          <div class="types-row">
+            <strong>Tipo(s):</strong>
+            <mat-chip-set>
+              @for (t of pokemon()?.types; track t.slot) {
+                <mat-chip class="type-chip type-{{ t.type.name }}">{{ t.type.name }}</mat-chip>
+              }
+            </mat-chip-set>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-box">
+              <span class="label">Altura</span>
+              <span class="value">{{ getHeightInMeters() }}</span>
+            </div>
+            <div class="stat-box">
+              <span class="label">Peso</span>
+              <span class="value">{{ getWeightInKg() }}</span>
+            </div>
+            <div class="stat-box">
+              <span class="label">Exp. Base</span>
+              <span class="value">{{ pokemon()?.base_experience || 'N/A' }} XP</span>
+            </div>
+          </div>
+
+          <div class="abilities-section">
+            <strong>Habilidades:</strong>
+            <mat-chip-set>
+              @for (ab of pokemon()?.abilities; track ab.slot) {
+                <mat-chip>
+                  {{ ab.ability.name }}
+                  @if (ab.is_hidden) {
+                    <span class="hidden-tag">(Oculta)</span>
+                  }
+                </mat-chip>
+              }
+            </mat-chip-set>
+          </div>
+
+          <div class="base-stats-section">
+            <strong>Estadísticas Base:</strong>
+            <div class="stats-bars">
+              @for (stat of pokemon()?.stats; track stat.stat.name) {
+                <div class="stat-item">
+                  <div class="stat-labels">
+                    <span class="stat-name">{{ stat.stat.name }}</span>
+                    <span class="stat-num">{{ stat.base_stat }}</span>
+                  </div>
+                  <mat-progress-bar
+                    mode="determinate"
+                    [value]="(stat.base_stat / 255) * 100"
+                  ></mat-progress-bar>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  }
+</div>
