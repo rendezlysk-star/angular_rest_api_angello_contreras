@@ -1,7 +1,6 @@
 
 @use '@angular/material' as mat;
 
-// Definición de paletas Material 3
 $light-theme: (
   color: (
     primary: mat.$azure-palette,
@@ -22,19 +21,16 @@ $dark-theme: (
   density: 0,
 );
 
-// 1. Tema claro por defecto en toda la aplicación
 html {
   @include mat.theme($light-theme);
   color-scheme: light;
 }
 
-// 2. Tema oscuro nativo al alternar la clase .dark-theme
 html.dark-theme {
   @include mat.theme($dark-theme);
   color-scheme: dark;
 }
 
-// 3. Estilos globales y reset usando tokens nativos de Material 3
 html, body {
   height: 100%;
 }
@@ -48,11 +44,6 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-// 4. Adaptación limpia para elementos personalizados y bordes redondeados
-// Usamos los tokens del sistema para que cambien solos sin tocar CSS a mano
-
-// Botones y bordes redondeados
-.mat-mdc-unelevated-button,
 .mat-mdc-raised-button,
 .mat-mdc-outlined-button,
 .mat-mdc-button {
@@ -64,7 +55,6 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.25s ease !important;
 }
 
-// Cajas de estadísticas, citas y descripciones conectadas a los tokens nativos de superficie
 .stat-card, .stat-box {
   background-color: var(--mat-sys-surface-container) !important;
   border: 1px solid var(--mat-sys-outline-variant) !important;

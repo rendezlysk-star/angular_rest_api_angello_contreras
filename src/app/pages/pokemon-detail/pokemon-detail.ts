@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { PokemonRestService, PokemonDetail } from '../../services/pokemon-rest';
+import { PokemonRestService } from '../../services/pokemon-rest';
+import { PokemonDetail } from '../../interfaces/pokemon';
 
 @Component({
   selector: 'app-pokemon-detail',

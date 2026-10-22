@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { DbzRestService, DbzCharacterDetail } from '../../services/dbz-rest';
+import { DbzRestService } from '../../services/dbz-rest';
+import { DbzCharacterDetail } from '../../interfaces/dbz';
 import { ImageModalComponent } from '../../components/image-modal/image-modal';
 
 @Component({

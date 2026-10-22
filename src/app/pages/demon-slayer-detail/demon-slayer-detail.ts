@@ -6,7 +6,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { DemonSlayerRestService, DemonSlayerCharacter } from '../../services/demon-slayer-rest';
+import { DemonSlayerRestService } from '../../services/demon-slayer-rest';
+import { DemonSlayerCharacter } from '../../interfaces/demon-slayer';
 
 @Component({
   selector: 'app-demon-slayer-detail',

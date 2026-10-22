@@ -6,7 +6,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { DigimonRestService, DigimonDetail } from '../../services/digimon-rest';
+import { DigimonRestService } from '../../services/digimon-rest';
+import { DigimonDetail } from '../../interfaces/digimon';
 
 @Component({
   selector: 'app-digimon-detail',

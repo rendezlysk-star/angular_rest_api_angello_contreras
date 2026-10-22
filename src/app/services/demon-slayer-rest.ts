@@ -1,25 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-
-export interface NamedEntity {
-  id?: number;
-  name: string;
-}
-
-export interface DemonSlayerCharacter {
-  id: number;
-  name: string;
-  img?: string;
-  image?: string;
-  race?: string;
-  gender?: string;
-  age?: number | string;
-  description?: string;
-  affiliation?: string | NamedEntity;
-  combat_style?: string | NamedEntity | NamedEntity[];
-  quote?: string;
-}
+import { DemonSlayerCharacter } from '../interfaces/demon-slayer';
 
 @Injectable({
   providedIn: 'root',

@@ -1,35 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface DigimonListItem {
-  id: number;
-  name: string;
-  href: string;
-  image: string;
-}
-
-export interface DigimonApiResponse {
-  content: DigimonListItem[];
-  pageable: {
-    currentPage: number;
-    elementsOnPage: number;
-    totalElements: number;
-    totalPages: number;
-  };
-}
-
-export interface DigimonDetail {
-  id: number;
-  name: string;
-  images: Array<{ href: string; transparent?: boolean }>;
-  levels?: Array<{ id: number; level: string }>;
-  types?: Array<{ id: number; type: string }>;
-  attributes?: Array<{ id: number; attribute: string }>;
-  fields?: Array<{ id: number; field: string; image: string }>;
-  descriptions?: Array<{ origin: string; language: string; description: string }>;
-  skills?: Array<{ id: number; skill: string; translation?: string; description: string }>;
-}
+import { DigimonDetail, DigimonApiResponse } from '../interfaces/digimon';
 
 @Injectable({
   providedIn: 'root',

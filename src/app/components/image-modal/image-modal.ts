@@ -2,11 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-export interface ImageModalData {
-  imageUrl: string;
-  title: string;
-}
+import { ImageModalData } from '../../interfaces/image-modal';
 
 @Component({
   selector: 'app-image-modal',
